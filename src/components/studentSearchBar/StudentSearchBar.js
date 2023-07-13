@@ -9,6 +9,16 @@ const StudentSearchBar = ({
 }) => {
   const [searchStudentName, setSearchStudentName] = useState("");
 
+  function filterStudentNamesByStudentSearchBarInput(
+    searchStudentName,
+    filteredStudentData
+  ) {
+    return filteredStudentData.filter((student) => {
+      const { firstName, lastName } = student;
+      `${(firstName, lastName)}`.match(searchStudentName.toLowerCase());
+    });
+  }
+
   function filterStudentsByName(
     studentNameTextFromStudentSearchBar,
     filteredStudentData
@@ -57,7 +67,10 @@ const StudentSearchBar = ({
   const handleSearchbarTextChange = (e) => {
     const searchStudentName = e.target.value;
     const studentsThatMatchStudentSearchInputString = searchStudentName.length
-      ? filterStudentsByFirstOrLastName(searchStudentName, studentMasterData)
+      ? filterStudentNamesByStudentSearchBarInput(
+          searchStudentName,
+          studentMasterData
+        )
       : studentMasterData;
     setFilteredStudentData(studentsThatMatchStudentSearchInputString);
     setSearchStudentName(searchStudentName);
