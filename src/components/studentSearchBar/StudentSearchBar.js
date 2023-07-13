@@ -15,7 +15,8 @@ const StudentSearchBar = ({
   ) {
     return filteredStudentData.filter((student) => {
       const { firstName, lastName } = student;
-      `${(firstName, lastName)}`.match(searchStudentName.toLowerCase());
+      const studentFullName = `${(firstName, lastName)}`.toLocaleLowerCase();
+      studentFullName.match(searchStudentName.toLowerCase());
     });
   }
 
@@ -87,12 +88,12 @@ const StudentSearchBar = ({
   };
 
   return (
-    <div studentSearchBar>
+    <div className="studentSearchBar">
       <input
         type="text"
         id="searchStudentName"
         value={searchStudentName}
-        className="studentSearchBarInput"
+        className="studentSearchBar__Input"
         placeholder="Search by name"
         onChange={handleSearchbarTextChange2}></input>
     </div>
